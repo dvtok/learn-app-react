@@ -9,6 +9,9 @@ class Article extends Component {
         }
     }
     
+    componentWillMount() {
+        console.log('Mounting')
+    }
 
     render () {
         const {article} = this.props    
