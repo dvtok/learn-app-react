@@ -13,6 +13,12 @@ class Article extends Component {
         console.log('Mounting')
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.defaultOpen !== this.props.defaultOpen) this.setState({
+            isOpen: nextProps.defaultOpen
+        })
+    }
+
     render () {
         const {article} = this.props    
         const body = this.state.isOpen && <section className="card-text">{article.text}</section>
