@@ -8,6 +8,9 @@ class App extends Component {
         reverted: false
     }
 
+    articlesLocal = articles.slice()
+
+
     render() {
         return(
             <div className="container">
@@ -17,14 +20,20 @@ class App extends Component {
                         <button className="btn" onClick={this.revert}>Изменение</button>
                     </h1>
                 </div>
-                <ArticleList articles={this.state.reverted ? articles.reverse() : articles} />
+                <ArticleList articles={this.articlesLocal} />
             </div>
         ) 
     }
 
-    revert = () => this.setState({
-        reverted: !this.state.reverted
-    })
+    
+
+    revert = () => {           
+        console.log(this.articlesLocal)     
+        this.articlesLocal.reverse()
+        this.setState({        
+            reverted: !this.state.reverted
+        })
+    }
 }
 
 export default App
