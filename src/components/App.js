@@ -1,17 +1,15 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import ArticleList from "./ArticleList"
 import {data as articles} from '../fixtures'
 import 'bootstrap/dist/css/bootstrap.css'
 
-class App extends Component {
+class App extends PureComponent {
     state = {
         reverted: false
     }
 
-    articlesLocal = articles.slice()
-
-
     render() {
+        console.log(1);
         return(
             <div className="container">
                 <div className="jumbotron">
@@ -20,16 +18,14 @@ class App extends Component {
                         <button className="btn" onClick={this.revert}>Изменение</button>
                     </h1>
                 </div>
-                <ArticleList articles={this.articlesLocal} />
+                <ArticleList articles={this.state.reverted ? articles.slice().reverse() : articles} />
             </div>
         ) 
     }
 
     
 
-    revert = () => {           
-        console.log(this.articlesLocal)     
-        this.articlesLocal.reverse()
+    revert = () => {    
         this.setState({        
             reverted: !this.state.reverted
         })
